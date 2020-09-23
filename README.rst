@@ -48,10 +48,10 @@ Configuration
       scm_contribs_email = ["true"|"false"]          # Show email. Default: "true"
       scm_contribs_limit_contributors" = [None|int]  # Limit number of contributors. Use None
                                                      # to deactivate. Default: None
-      scm_contribs_min_commits" = int                # Filter by number of commits. Default: 0
-      scm_contribs_sort" = ["name"|"num"]            # Sort by name or number of commits.
+      scm_contribs_min_commits = int                 # Filter by number of commits. Default: 0
+      scm_contribs_sort = ["name"|"num"]             # Sort by name or number of commits.
                                                      # Default: "name"
-      scm_contribs_type" = ["author"|"committer"]    # Show info of author or committer.
+      scm_contribs_type = ["author"|"committer"]     # Show info of author or committer.
                                                      # Default: "author"
 
 
