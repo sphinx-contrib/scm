@@ -30,4 +30,4 @@ def setup(app: Sphinx) -> dict[str, Any]:
     app.add_config_value("scm_contribs_type", "author", "env")
     app.add_directive("scm-sectionauthor", ContribsDirective)
     app.add_role("scm-contribs", ContribsRole())
-    return {"version": __version__}
+    return {"version": ".".join(__version__.split(".")[:3])}
