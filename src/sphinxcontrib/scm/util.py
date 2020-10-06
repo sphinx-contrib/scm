@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from pathlib import Path
 from typing import Any
 
 import git
@@ -17,6 +18,7 @@ class Helper:
         :flags: Additional flags passed to `git shortlog`
         """
         docpath = self.get_source_info()[0]
+        docdir = Path(docpath).resolve().parent
         min_commits = self.optn_over_conf("min_commits", "scm_contribs_min_commits")
 
         limit_authors = self.optn_over_conf(
@@ -51,7 +53,7 @@ class Helper:
         git_options = ["-s", *flags, "--", docpath]
 
         contributors = []
-        for item in git.Git().shortlog(*git_options).split("\n"):
+        for item in git.Git(docdir).shortlog(*git_options).split("\n"):
             if not item:
                 continue
             num, contributor = item.split("\t")
