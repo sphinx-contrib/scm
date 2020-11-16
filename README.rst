@@ -2,7 +2,8 @@ sphinxcontrib-scm
 =================
 
 |badge:pypi-version| |badge:py-versions|
-|badge:pre-commit| |badge:black| |badge:prettier|
+|badge:pre-commit| |badge:pre-commit.ci|
+|badge:black| |badge:prettier|
 
 .. |badge:pypi-version| image:: https://img.shields.io/pypi/v/sphinxcontrib-scm.svg
    :target: https://pypi.org/project/sphinxcontrib-scm
@@ -13,6 +14,9 @@ sphinxcontrib-scm
 .. |badge:pre-commit| image:: https://img.shields.io/badge/pre--commit-enabled-brightgreen.svg?logo=pre-commit&logoColor=white
    :target: https://github.com/pre-commit/pre-commit
    :alt: [pre-commit: enabled]
+.. |badge:pre-commit.ci| image:: https://results.pre-commit.ci/badge/github/sphinx-contrib/scm/master.svg
+   :target: https://results.pre-commit.ci/latest/github/sphinx-contrib/scm/master
+   :alt: [pre-commit.ci status]
 .. |badge:black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://github.com/psf/black
    :alt: [Code style: black]
