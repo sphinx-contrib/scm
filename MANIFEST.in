@@ -11,6 +11,7 @@ include *.in
 
 exclude .flake8
 exclude .pre-commit-config.yaml
+exclude .prettierrc.yaml
 
 global-exclude *.py[cod]
 global-exclude __pycache__
