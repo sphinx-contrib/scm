@@ -14,12 +14,6 @@ repos:
     rev: v2.2.1
     hooks:
       - id: prettier
-  - repo: https://github.com/mgedmin/check-manifest
-    rev: "0.46"
-    hooks:
-      - id: check-manifest
-        args: [--no-build-isolation]
-        additional_dependencies: [setuptools-scm]
   - repo: https://github.com/asottile/seed-isort-config
     rev: v2.2.0
     hooks:
