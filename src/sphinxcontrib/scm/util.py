@@ -17,8 +17,8 @@ class Helper:
         :path: Path of which to get contributors
         :flags: Additional flags passed to `git shortlog`
         """
-        docpath = self.get_source_info()[0]
-        docdir = Path(docpath).resolve().parent
+        docpath = Path(self.get_source_info()[0]).resolve()
+        docdir = docpath.parent
         min_commits = self.optn_over_conf("min_commits", "scm_contribs_min_commits")
 
         limit_authors = self.optn_over_conf(
