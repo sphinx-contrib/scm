@@ -5,7 +5,6 @@ import textwrap
 import sphinx.util
 from docutils import nodes
 from docutils.nodes import Node, system_message
-from docutils.statemachine import StringList
 from sphinx.util.docutils import SphinxRole
 
 from .util import Helper
