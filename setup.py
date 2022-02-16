@@ -1,3 +1,7 @@
-from setuptools import setup
+import setuptools
 
-setup(use_scm_version=True)
+if __name__ == "__main__":
+    setuptools.setup(
+        use_scm_version=True,
+        setup_requires="setuptools-scm>=4.1",
+    )
