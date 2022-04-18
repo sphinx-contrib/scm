@@ -2,14 +2,14 @@ from __future__ import annotations
 
 import textwrap
 
-import sphinx.util
 from docutils import nodes
 from docutils.nodes import Node, system_message
+from sphinx.util import logging
 from sphinx.util.docutils import SphinxRole
 
 from .util import Helper
 
-logger = sphinx.util.logging.getLogger(__name__)
+logger = logging.getLogger(f"sphinxcontrib-scm.{__name__}")
 
 
 class ContribsRole(SphinxRole, Helper):

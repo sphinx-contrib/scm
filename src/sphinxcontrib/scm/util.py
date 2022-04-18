@@ -4,10 +4,10 @@ from pathlib import Path
 from typing import Any
 
 import git
-import sphinx.util
 from docutils.parsers.rst import directives
+from sphinx.util import logging
 
-logger = sphinx.util.logging.getLogger(__name__)
+logger = logging.getLogger(f"sphinxcontrib-scm.{__name__}")
 
 
 class Helper:

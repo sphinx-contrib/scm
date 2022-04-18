@@ -2,15 +2,15 @@ from __future__ import annotations
 
 import textwrap
 
-import sphinx.util
 from docutils import nodes
 from docutils.nodes import Node
 from docutils.statemachine import StringList
+from sphinx.util import logging, nested_parse_with_titles
 from sphinx.util.docutils import SphinxDirective
 
 from .util import Helper
 
-logger = sphinx.util.logging.getLogger(__name__)
+logger = logging.getLogger(f"sphinxcontrib-scm.{__name__}")
 
 
 class ContribsDirective(SphinxDirective, Helper):
@@ -42,6 +42,6 @@ class ContribsDirective(SphinxDirective, Helper):
         new_content = StringList(new_content.splitlines(), source="")
 
         node = nodes.Element()
-        sphinx.util.nested_parse_with_titles(self.state, new_content, node)
+        nested_parse_with_titles(self.state, new_content, node)
 
         return node.children

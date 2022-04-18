@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from typing import Any
 
-import sphinx.util
 from sphinx.application import Sphinx
+from sphinx.util import logging
 
 from .directives import ContribsDirective
 from .roles import ContribsRole
@@ -18,7 +18,7 @@ try:
 except metadata.PackageNotFoundError:
     pass
 
-logger = sphinx.util.logging.getLogger(__name__)
+logger = logging.getLogger("sphinxcontrib-scm")
 
 
 def setup(app: Sphinx) -> dict[str, Any]:
