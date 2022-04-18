@@ -1,0 +1,5 @@
+{
+  "autoDocstring.docstringFormat": "sphinx",
+  "python.formatting.provider": "black",
+  "python.linting.enabled": true
+}
