@@ -22,11 +22,11 @@ logger = sphinx.util.logging.getLogger(__name__)
 
 
 def setup(app: Sphinx) -> dict[str, Any]:
-    app.add_config_value("scm_contribs_email", "true", "env")
-    app.add_config_value("scm_contribs_limit_authors", None, "env")
-    app.add_config_value("scm_contribs_min_commits", 0, "env")
-    app.add_config_value("scm_contribs_sort", "name", "env")
-    app.add_config_value("scm_contribs_type", "author", "env")
-    app.add_directive("scm-sectionauthor", ContribsDirective)
-    app.add_role("scm-contribs", ContribsRole())
+    app.add_config_value(name="scm_contribs_email", default="true", rebuild="env")
+    app.add_config_value(name="scm_contribs_limit_authors", default=None, rebuild="env")
+    app.add_config_value(name="scm_contribs_min_commits", default=0, rebuild="env")
+    app.add_config_value(name="scm_contribs_sort", default="name", rebuild="env")
+    app.add_config_value(name="scm_contribs_type", default="author", rebuild="env")
+    app.add_directive(name="scm-sectionauthor", cls=ContribsDirective)
+    app.add_role(name="scm-contribs", role=ContribsRole())
     return {"version": ".".join(__version__.split(".")[:3])}
