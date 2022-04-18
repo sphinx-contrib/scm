@@ -3,8 +3,8 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
-import git
 from docutils.parsers.rst import directives
+from git.cmd import Git
 from sphinx.util import logging
 
 logger = logging.getLogger(f"sphinxcontrib-scm.{__name__}")
@@ -17,8 +17,9 @@ class Helper:
         :path: Path of which to get contributors
         :flags: Additional flags passed to `git shortlog`
         """
-        docpath = Path(self.get_source_info()[0]).resolve()
-        docdir = docpath.parent
+        docfile_path = Path(self.get_source_info()[0]).resolve()
+        docfile_name = docfile_path.name
+        docdir_path = docfile_path.parent
         min_commits = self.optn_over_conf("min_commits", "scm_contribs_min_commits")
 
         limit_authors = self.optn_over_conf(
@@ -30,7 +31,7 @@ class Helper:
                 "Check '(scm_contribs_)limit_authors' option/config value"
             )
 
-        flags = []
+        flags: list[str] = []
 
         contribs_email = directives.choice(
             self.optn_over_conf("email", "scm_contribs_email"),
@@ -50,10 +51,12 @@ class Helper:
         )
         flags += ["-c"] if contribs_type == "committer" else []
 
-        git_options = ["-s", *flags, "--", docpath]
+        git_shortlog_options = ["-s", *flags, "--", docfile_name]
 
         contributors = []
-        for item in git.Git(docdir).shortlog(*git_options).split("\n"):
+        git_shortlog = Git(docdir_path).shortlog(*git_shortlog_options)
+        git_shortlog_items = git_shortlog.split("\n")
+        for item in git_shortlog_items:
             if not item:
                 continue
             num, contributor = item.split("\t")
