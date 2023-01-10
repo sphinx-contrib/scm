@@ -7,7 +7,8 @@ name: Upload Python Package
 
 on:
   release:
-    types: [published]
+    types:
+      - published
 
 jobs:
   build:
@@ -15,11 +16,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: "3.x"
       - name: Install pypa/build
@@ -30,7 +31,7 @@ jobs:
         run: |
           python -m build
       - name: Upload dist files
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: dist-files
           path: dist/
@@ -41,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download dist files
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: dist-files
           path: dist/
