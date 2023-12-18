@@ -21,7 +21,7 @@ class Helper:
     def config(self) -> Config:
         raise NotImplementedError
 
-    def get_contibutors(self) -> list[str]:
+    def get_contributors(self) -> list[str]:
         """Return list of Git contributors for given path using `git shortlog`
 
         :path: Path of which to get contributors
@@ -30,9 +30,9 @@ class Helper:
         docfile_path = Path(self.get_source_info()[0]).resolve()
         docfile_name = docfile_path.name
         docdir_path = docfile_path.parent
-        min_commits = self.optn_over_conf("min_commits", "scm_contribs_min_commits")
+        min_commits = self.option_over_conf("min_commits", "scm_contribs_min_commits")
 
-        limit_authors = self.optn_over_conf(
+        limit_authors = self.option_over_conf(
             "limit_authors", "scm_contribs_limit_authors"
         )
         if limit_authors is not None and limit_authors < 1:
@@ -44,19 +44,19 @@ class Helper:
         flags: list[str] = []
 
         contribs_email = directives.choice(
-            self.optn_over_conf("email", "scm_contribs_email"),
+            self.option_over_conf("email", "scm_contribs_email"),
             ("true", "false"),
         )
         flags += ["-e"] if contribs_email == "true" else []
 
         contribs_sort = directives.choice(
-            self.optn_over_conf("sort", "scm_contribs_sort"),
+            self.option_over_conf("sort", "scm_contribs_sort"),
             ("name", "num"),
         )
         flags += ["-n"] if contribs_sort == "num" else []
 
         contribs_type = directives.choice(
-            self.optn_over_conf("type", "scm_contribs_type"),
+            self.option_over_conf("type", "scm_contribs_type"),
             ("author", "committer"),
         )
         flags += ["-c"] if contribs_type == "committer" else []
@@ -76,7 +76,7 @@ class Helper:
 
         return contributors[:limit_authors]
 
-    def optn_over_conf(self, option_name: str, config_value: str) -> Any:
+    def option_over_conf(self, option_name: str, config_value: str) -> Any:
         """Return option if option is set, else return config value"""
         # logger.debug("Option '%s': '%s'", option_name, self.options.get(option_name))
         # logger.debug("Config '%s': '%s'", config_value, self.config[config_value])

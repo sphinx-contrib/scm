@@ -27,7 +27,7 @@ class ContribsDirective(SphinxDirective, Helper):
 
     def run(self) -> list[Node]:
         """Directive to list all SCM contributors"""
-        contributors = self.get_contibutors()
+        contributors = self.get_contributors()
         contributors_str = (
             ",\n   ".join(contributors)
             if contributors

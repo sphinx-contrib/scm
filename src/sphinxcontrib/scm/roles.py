@@ -15,7 +15,7 @@ logger = logging.getLogger(f"sphinxcontrib-scm.{__name__}")
 class ContribsRole(SphinxRole, Helper):
     def run(self) -> tuple[list[Node], list[system_message]]:
         """Role to list all SCM contributors"""
-        contributors = self.get_contibutors()
+        contributors = self.get_contributors()
         contributors_str = (
             ", ".join(contributors) if contributors else "<no SCM contributors found>"
         )
