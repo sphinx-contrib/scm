@@ -5,12 +5,22 @@ from typing import Any
 
 from docutils.parsers.rst import directives
 from git.cmd import Git
+from sphinx.config import Config
 from sphinx.util import logging
 
 logger = logging.getLogger(f"sphinxcontrib-scm.{__name__}")
 
 
 class Helper:
+    options: dict
+
+    def get_source_info(self, lineno: int | None = None) -> tuple[str, int]:
+        raise NotImplementedError
+
+    @property
+    def config(self) -> Config:
+        raise NotImplementedError
+
     def get_contibutors(self) -> list[str]:
         """Return list of Git contributors for given path using `git shortlog`
 

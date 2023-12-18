@@ -5,15 +5,16 @@ import textwrap
 from docutils import nodes
 from docutils.nodes import Node
 from docutils.statemachine import StringList
-from sphinx.util import logging, nested_parse_with_titles
+from sphinx.util import logging
 from sphinx.util.docutils import SphinxDirective
+from sphinx.util.nodes import nested_parse_with_titles
 
 from .util import Helper
 
 logger = logging.getLogger(f"sphinxcontrib-scm.{__name__}")
 
 
-class ContribsDirective(SphinxDirective, Helper):
+class ContribsDirective(Helper, SphinxDirective):
     has_content = False
     optional_arguments = 0
     option_spec = {
@@ -24,7 +25,7 @@ class ContribsDirective(SphinxDirective, Helper):
         "type": str,
     }
 
-    def run(self) -> Node:
+    def run(self) -> list[Node]:
         """Directive to list all SCM contributors"""
         contributors = self.get_contibutors()
         contributors_str = (
