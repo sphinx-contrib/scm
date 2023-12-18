@@ -29,4 +29,7 @@ def setup(app: Sphinx) -> dict[str, Any]:
     app.add_config_value(name="scm_contribs_type", default="author", rebuild="env")
     app.add_directive(name="scm-sectionauthor", cls=ContribsDirective)
     app.add_role(name="scm-contribs", role=ContribsRole())
-    return {"version": ".".join(__version__.split(".")[:3])}
+    return {
+        "version": ".".join(__version__.split(".")[:3]),
+        "parallel_read_safe": True,
+    }
