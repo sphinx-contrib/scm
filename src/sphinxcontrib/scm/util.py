@@ -47,21 +47,27 @@ class Helper:
             self.option_over_conf("email", "scm_contribs_email"),
             ("true", "false"),
         )
-        flags += ["-e"] if contribs_email == "true" else []
+        flags += ["--email"] if contribs_email == "true" else ["--no-email"]
 
         contribs_sort = directives.choice(
             self.option_over_conf("sort", "scm_contribs_sort"),
             ("name", "num"),
         )
-        flags += ["-n"] if contribs_sort == "num" else []
+        flags += ["--numbered"] if contribs_sort == "num" else ["--no-numbered"]
 
         contribs_type = directives.choice(
             self.option_over_conf("type", "scm_contribs_type"),
             ("author", "committer"),
         )
-        flags += ["-c"] if contribs_type == "committer" else []
+        flags += ["--committer"] if contribs_type == "committer" else ["--no-committer"]
 
-        git_shortlog_options = ["-s", *flags, "--", docfile_name]
+        git_shortlog_options = [
+            "--summary",
+            *flags,
+            "HEAD",
+            "--",
+            docfile_name,
+        ]
 
         contributors = []
         git_shortlog = Git(docdir_path).shortlog(*git_shortlog_options)
