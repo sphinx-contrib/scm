@@ -11,6 +11,25 @@ from sphinx.util import logging
 logger = logging.getLogger(f"sphinxcontrib-scm.{__name__}")
 
 
+CONTRIBS_EMAIL_FLAGS = {
+    "true": "--email",
+    "false": "--no-email",
+}
+CONTRIBS_EMAIL_CHOICES = tuple(CONTRIBS_EMAIL_FLAGS.keys())
+
+CONTRIBS_SORT_FLAGS = {
+    "num": "--numbered",
+    "name": "--no-numbered",
+}
+CONTRIBS_SORT_CHOICES = tuple(CONTRIBS_SORT_FLAGS.keys())
+
+CONTRIBS_TYPE_FLAGS = {
+    "committer": "--committer",
+    "author": "--no-committer",
+}
+CONTRIBS_TYPE_CHOICES = tuple(CONTRIBS_TYPE_FLAGS.keys())
+
+
 class Helper:
     options: dict
 
@@ -45,21 +64,21 @@ class Helper:
 
         contribs_email = directives.choice(
             self.option_over_conf("email", "scm_contribs_email"),
-            ("true", "false"),
+            CONTRIBS_EMAIL_CHOICES,
         )
-        flags += ["--email"] if contribs_email == "true" else ["--no-email"]
+        flags.append(CONTRIBS_EMAIL_FLAGS[contribs_email])
 
         contribs_sort = directives.choice(
             self.option_over_conf("sort", "scm_contribs_sort"),
-            ("name", "num"),
+            CONTRIBS_SORT_CHOICES,
         )
-        flags += ["--numbered"] if contribs_sort == "num" else ["--no-numbered"]
+        flags.append(CONTRIBS_SORT_FLAGS[contribs_sort])
 
         contribs_type = directives.choice(
             self.option_over_conf("type", "scm_contribs_type"),
-            ("author", "committer"),
+            CONTRIBS_TYPE_CHOICES,
         )
-        flags += ["--committer"] if contribs_type == "committer" else ["--no-committer"]
+        flags.append(CONTRIBS_TYPE_FLAGS[contribs_type])
 
         git_shortlog_options = [
             "--summary",
