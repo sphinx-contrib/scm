@@ -12,7 +12,7 @@ from .util import Helper
 logger = logging.getLogger(f"sphinxcontrib-scm.{__name__}")
 
 
-class ContribsRole(Helper, SphinxRole):
+class ContribsRole(SphinxRole, Helper):
     def run(self) -> tuple[list[Node], list[system_message]]:
         """Role to list all SCM contributors"""
         contributors = self.get_contibutors()

@@ -14,7 +14,7 @@ from .util import Helper
 logger = logging.getLogger(f"sphinxcontrib-scm.{__name__}")
 
 
-class ContribsDirective(Helper, SphinxDirective):
+class ContribsDirective(SphinxDirective, Helper):
     has_content = False
     optional_arguments = 0
     option_spec = {
