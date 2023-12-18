@@ -85,5 +85,5 @@ Role
 
    :scm-contribs:`.`
 
-Can be used inline (eg as content for the ``sectionauthor`` directive. Currenlty, email
+Can be used inline (eg as content for the ``sectionauthor`` directive). Currently, email
 addresses are not converted into mailto links.
