@@ -34,12 +34,10 @@ class ContribsDirective(SphinxDirective, Helper):
             else "<no SCM contributors found>"
         )
 
-        new_content = textwrap.dedent(
-            """\
+        new_content = textwrap.dedent("""\
             .. sectionauthor::
                {contributors}\
-            """
-        ).format(contributors=contributors_str)
+            """).format(contributors=contributors_str)
         new_content = StringList(new_content.splitlines(), source="")
 
         node = nodes.Element()
